@@ -23,7 +23,7 @@ public class pierreFeuilleCiseaux {
         String result;
         int serieFin;
         String rejouerResult;
-//        int resultScores[] = new int[2];
+        int resultScores[] = new int[2];
 
         do {
             showMenuGame();
@@ -33,12 +33,18 @@ public class pierreFeuilleCiseaux {
                 resultUser = userChoice();
                 resultPC = computerChoice();
                 result = showResult(resultUser, resultPC);
-                scoreResult(result);
+                resultScores = scoreResult(result);
+                
+
             }
+            quiGagne(resultScores);
             rejouerResult = rejouer();
             if(rejouerResult.equals("Y")){
                 scorePC = 0;
                 scoreUser=0;
+                resultScores[0] = 0;
+                resultScores[1] = 0;
+                
             }
         } while (!"N".equals(rejouerResult));
         
@@ -166,6 +172,14 @@ public class pierreFeuilleCiseaux {
             rejouer = sc.nextLine();
         } while (!"N".equals(rejouer) && !"Y".equals(rejouer) && !"XXX".equals(rejouer));
         return rejouer;
+    }
+    /**
+/**
+* 
+* @param scoreFinal 
+*/
+    public static void quiGagne(int scoreFinal[]) {
+        System.out.println((scoreFinal[0] > scoreFinal[1]) ? "Score Final: 'Utilisateur' a Gagne!!!!" : (scoreFinal[0] <scoreFinal[1])? "Score Final: 'Ordinateur' a Gagne!!!!":"Score Final:  <<<Partie nulle>>>");
     }
 
 }
